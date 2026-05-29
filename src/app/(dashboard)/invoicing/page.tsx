@@ -34,6 +34,7 @@ export default async function InvoicingPage() {
               <th className="px-6 py-3 text-left">Amount</th>
               <th className="px-6 py-3 text-left">Status</th>
               <th className="px-6 py-3 text-left">Due date</th>
+              <th className="px-6 py-3 text-left">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -65,6 +66,14 @@ export default async function InvoicingPage() {
                 </td>
                 <td className="px-6 py-4 text-gray-600">
                   {new Date(invoice.dueAt).toLocaleDateString()}
+                </td>
+                <td className="px-6 py-4">
+                  <Link
+                    href={`/invoicing/${invoice.id}/edit`}
+                    className="text-blue-600 hover:underline text-sm"
+                  >
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}
