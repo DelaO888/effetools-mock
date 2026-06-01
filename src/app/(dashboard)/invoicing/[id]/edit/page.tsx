@@ -18,7 +18,7 @@ export default function EditInvoicePage() {
   });
 
   useEffect(() => {
-    fetch("/api/invoices/${id}")
+    fetch(`/api/invoices/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setForm({
@@ -37,7 +37,7 @@ export default function EditInvoicePage() {
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/invoices/${id}", {
+    const res = await fetch(`/api/invoices/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...form, amount: parseFloat(form.amount) }),
@@ -56,7 +56,7 @@ export default function EditInvoicePage() {
   async function handleDelete() {
     if (!confirm("Are you sure you want to delete this invoice?")) return;
 
-    await fetch("/api/invoices/${id}", { method: "DELETE" });
+    await fetch(`/api/invoices/${id}`, { method: "DELETE" });
     router.push("/invoicing");
     router.refresh();
   }
