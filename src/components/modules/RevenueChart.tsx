@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
 import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    ResponsiveContainer,
-} from "recharts"
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const data = [
   { month: "Jan", revenue: 42000 },
@@ -23,23 +23,33 @@ const data = [
   { month: "Oct", revenue: 69000 },
   { month: "Nov", revenue: 82000 },
   { month: "Dec", revenue: 91000 },
-]
+];
 
-export default function RevenueChart(){
-    return(
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4">Revenue 2024</h2>
-            <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={data}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0"></CartesianGrid>
-                    <XAxis dataKey="month" tick={{ fill: "#6b7280" }} ></XAxis>
-                    <YAxis tick={{ fill: "#6b7280" }} />
-                    <Tooltip formatter={(value) => [`$${value.toLocaleString()}`, "Revenue"]} />
-                      <Line type="monotone" dataKey="revenue" stroke="#2563eb"  strokeWidth={2}
+export default function RevenueChart() {
+  return (
+    <div className="bg-white rounded-xl p-6 shadow-sm">
+      <h2 className="text-lg font-semibold text-gray-700 mb-4">Revenue 2024</h2>
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0"></CartesianGrid>
+          <XAxis dataKey="month" tick={{ fill: "#6b7280" }}></XAxis>
+          <YAxis tick={{ fill: "#6b7280" }} />
+          <Tooltip
+            formatter={(value) => [
+              `$${Number(value).toLocaleString()}`,
+              "Revenue",
+            ]}
+          />
+          <Line
+            type="monotone"
+            dataKey="revenue"
+            stroke="#2563eb"
+            strokeWidth={2}
             dot={{ r: 4 }}
-            activeDot={{ r: 6 }}></Line>  
-                </LineChart>
-            </ResponsiveContainer>
-        </div>
-    )
+            activeDot={{ r: 6 }}
+          ></Line>
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }
