@@ -32,3 +32,18 @@ export type Invoice = Prisma.InvoiceModel
  * 
  */
 export type Product = Prisma.ProductModel
+/**
+ * Model Customer
+ * 
+ */
+export type Customer = Prisma.CustomerModel
+/**
+ * Model SalesOrder
+ * 
+ */
+export type SalesOrder = Prisma.SalesOrderModel
+/**
+ * Model SalesOrderItem
+ * 
+ */
+export type SalesOrderItem = Prisma.SalesOrderItemModel
