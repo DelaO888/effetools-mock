@@ -49,4 +49,52 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       return [...prev, { product, quantity: 1 }];
     });
   }
+
+  function removeItem(productId: string) {
+    setItems((prev) => prev.filter((i) => i.product.id !== productId));
+  }
+
+  function updateQuantity(productId: string, quantity: number) {
+    if (quantity <= 0) {
+      removeItem(productId);
+      return;
+    }
+    setItems((prev) =>
+      prev.map((i) => (i.product.id === productId ? { ...i, quantity } : i)),
+    );
+  }
+
+  function clearOrder() {
+    setCustomer(null);
+    setItems([]);
+  }
+
+  const total = items.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0,
+  );
+
+  return (
+    <OrderContext.Provider
+      value={{
+        customer,
+        items,
+        setCustomer,
+        addItem,
+        removeItem,
+        updateQuantity,
+        clearOrder,
+        total,
+      }}
+    >
+      {children}
+    </OrderContext.Provider>
+  );
+}
+
+export function useOrderContext() {
+  const context = useContext(OrderContext);
+  if (!context)
+    throw new Error("useOrderContext must be used within OrderProvider");
+  return context;
 }
