@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useCustomers } from "@/hooks/useCustomers";
 import { useOrderContext } from "@/context/OrderContext";
 
-export default function CustomerStep({ onNext }: { OnNext: () => void }) {
+export default function CustomerStep({ onNext }: { onNext: () => void }) {
   const { customers, loading, error } = useCustomers();
   const { customer, setCustomer } = useOrderContext();
 
